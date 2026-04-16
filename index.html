@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Q4 Drill 2</title>
+
+    
+</head>
+<body>
+    
+        <div class="container w-100 rounded-5 d-flex justify-content-center align-items-center vh-100">
+    
+            <div class="row bg-dark rounded-5 p-4" style="width: 600px;">
+
+                <div class="col-lg-8 justify-content-center align-items-center">
+
+                    <h3 class="text-warning">Heat Index Checker ⋆.ೃ࿔*:･</h3>
+                    <details ontoggle="instruct()">
+                        <summary>Note:</summary>
+                        <i id="note"></i>
+                    </details>
+                    <br>
+
+                    <form>
+                       
+                        <label id="deg" class="m-2">Degree in °C  ₊˚⊹⋆ྀ</label>
+
+                        <input type="number" class="form-control mb-3" id="temp" placeholder="Input degree value">
+
+                        <label id="deg" class="m-2">humidity in % ₊˚⊹⋆ </label>
+
+                        <input type="number" class="form-control mb-3" id="humid" placeholder="Input percentage value">
+                    
+                        <button type="button" class="btn btn-warning" onclick="HeatIndex()" >Check</button>
+
+                        <br><br><p><span id="message1" style="color: red; " class="fst-italic"></span></p>
+                    
+                    </form>
+                </div>
+
+                <div class="col-lg-4 d-flex justify-content-center align-items-center">
+                     <img src="heat.png" style="width:  300px; height: 300px;" class="mx-auto d-block">  
+                </div>
+            </div>
+
+
+        </div>
+   
+
+    <script>
+        function HeatIndex() {
+            let temp, humidity, HI, status;
+            temp = parseFloat(document.getElementById("temp").value);
+            humidity = parseFloat(document.getElementById("humid").value);
+           
+            HI = temp + (0.33 * humidity) - 4; //heat index (how hot it feels), is determined by combining the air temperature (temp) with 33% of the humidity value, then subtracting 4 to adjust the result.
+
+            status = ""; // initialize empty value
+
+                switch(true) {
+                    case (HI <= 27):
+                        status = "Comfortable / Cool";
+                        break;
+                    case (HI <= 32):
+                        status = "Warm";
+                        break;
+                    case (HI <= 37):
+                        status = "Hot";
+                        break;
+                    case (HI <= 41):
+                        status = "Very Hot / Caution";
+                        break;
+                    default:
+                        status = "Extreme / Danger";
+                }
+
+                alert('Heat Index: ' + HI.toFixed(1) + '°C' + '\n' + 'Status: ' + status);
+            }
+
+            function instruct(){
+                document.getElementById("note").innerHTML = "Input the temperature (°C) and humidity (%), then click Check to see the heat index and its status.";
+            }
+        
+    </script>
+    
+</body>
+</html>
